@@ -1,10 +1,11 @@
-FROM python:3.9.2
+FROM python:3
 
-RUN pip3 install -r requirements.txt
 WORKDIR /app
-COPY . /app
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt
 
-EXPOSE 5000
+COPY . .
 
-ENTRYPOINT ["python3"]
-CMD ["app.py"]
+EXPOSE 80
+
+CMD ["python", "./app.py"]
