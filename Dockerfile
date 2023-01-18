@@ -1,11 +1,11 @@
-FROM python:3
+FROM ubuntu:latest
 
-WORKDIR /app
-COPY requirements.txt ./
-RUN pip3 install -r requirements.txt
+RUN apt update
 
-COPY . .
+RUN apt install python3 -y
 
-EXPOSE 80
+WORKDIR /usr/app/src
 
-CMD ["python", "./app.py"]
+COPY app.py ./
+
+CMD ["python3", "./app.py"]
