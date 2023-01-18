@@ -1,11 +1,5 @@
-FROM ubuntu:latest
-
-RUN apt update
-
-RUN apt install python3 -y
-
-WORKDIR /usr/app/src
-
-COPY app.py ./
-
-CMD ["python3", "./app.py"]
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y python python-pip
+RUN pip install flask
+COPY app.py /opt/
+ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
